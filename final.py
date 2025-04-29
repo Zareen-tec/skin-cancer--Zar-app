@@ -4,11 +4,19 @@
 import os
 import cv2
 import numpy as np
+import asyncio
 from sklearn.model_selection import train_test_split
 from keras.applications import MobileNetV2
 from keras import layers, models
 import streamlit as st
 from PIL import Image
+
+# 🔧 Fix for Python 3.12 + Streamlit + Tornado (asyncio issue)
+try:
+    asyncio.get_running_loop()
+except RuntimeError:
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
 
 # 1. Define Paths
 dataset_path = "path/to/your/dataset"  # Replace with your dataset path
