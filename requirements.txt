@@ -1,6 +1,7 @@
-streamlit
-numpy
-pandas
-tensorflow
 opencv-python
+streamlit
+keras
+numpy
 Pillow
+scikit-learn
+
