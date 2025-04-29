@@ -1,22 +1,21 @@
 # -*- coding: utf-8 -*-
 """final.py"""
 
+# ✅ FIX: Patch asyncio before anything else (especially before importing streamlit)
+import sys
+import asyncio
+if sys.version_info >= (3, 12):
+    import asyncio.events
+    asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
+
 import os
 import cv2
 import numpy as np
-import asyncio
 from sklearn.model_selection import train_test_split
 from keras.applications import MobileNetV2
 from keras import layers, models
 import streamlit as st
 from PIL import Image
-
-# 🔧 Fix for Python 3.12 + Streamlit + Tornado (asyncio issue)
-try:
-    asyncio.get_running_loop()
-except RuntimeError:
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
 
 # 1. Define Paths
 dataset_path = "path/to/your/dataset"  # Replace with your dataset path
@@ -128,6 +127,6 @@ def streamlit_interface():
 
         st.subheader(f"Prediction: {result}")
 
-# 10. Launch Streamlit app (this will work when running locally)
+# 10. Launch Streamlit app (this will work when running locally or on Streamlit Cloud)
 if __name__ == "__main__":
     streamlit_interface()
