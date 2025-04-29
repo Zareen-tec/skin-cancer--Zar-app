@@ -11,9 +11,9 @@ import streamlit as st
 from PIL import Image
 
 # 1. Define Paths
-dataset_path = "path/to/your/dataset"
-train_folder = "path/to/train/folder"
-test_folder = "path/to/test/folder"
+dataset_path = "path/to/your/dataset"  # Replace with your dataset path
+train_folder = "path/to/train/folder"  # Replace with your desired train folder path
+test_folder = "path/to/test/folder"    # Replace with your desired test folder path
 
 # Create folders if they don't exist
 os.makedirs(train_folder, exist_ok=True)
@@ -120,6 +120,6 @@ def streamlit_interface():
 
         st.subheader(f"Prediction: {result}")
 
-# Launch Streamlit app (this will work when running locally)
+# 10. Launch Streamlit app (this will work when running locally)
 if __name__ == "__main__":
     streamlit_interface()
